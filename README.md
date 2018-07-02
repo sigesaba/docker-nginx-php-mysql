@@ -1,6 +1,8 @@
 # Nginx PHP MySQL [![Build Status](https://travis-ci.org/nanoninja/docker-nginx-php-mysql.svg?branch=master)](https://travis-ci.org/nanoninja/docker-nginx-php-mysql) [![GitHub version](https://badge.fury.io/gh/nanoninja%2Fdocker-nginx-php-mysql.svg)](https://badge.fury.io/gh/nanoninja%2Fdocker-nginx-php-mysql)
 
-Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
+This repository forked from [nanoninja/docker-nginx-php-mysql](https://github.com/nanoninja/docker-nginx-php-mysql).
+
+Docker running Nginx, WordPress, MySQL, PHPMyAdmin and Mailhog.
 
 ## Overview
 
@@ -70,9 +72,9 @@ sudo apt install build-essential
 
 * [Nginx](https://hub.docker.com/_/nginx/)
 * [MySQL](https://hub.docker.com/_/mysql/)
-* [PHP-FPM](https://hub.docker.com/r/nanoninja/php-fpm/)
-* [Composer](https://hub.docker.com/_/composer/)
+* [WordPress-FPM](https://hub.docker.com/_/wordpress/)
 * [PHPMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+* [MailHog](https://hub.docker.com/r/mailhog/mailhog/)
 * [Generate Certificate](https://hub.docker.com/r/jacoelho/generate-certificate/)
 
 You should be careful when installing third party web servers such as MySQL or Nginx.
@@ -131,7 +133,7 @@ cd docker-nginx-php-mysql
     │       ├── FooTest.php
     │       └── bootstrap.php
     └── public
-        └── index.php
+        └── (WordPress files mounts here)
 ```
 
 ___
@@ -189,13 +191,7 @@ ___
 
 ## Run the application
 
-1. Copying the composer configuration file : 
-
-    ```sh
-    cp web/app/composer.json.dist web/app/composer.json
-    ```
-
-2. Start the application :
+1. Start the application :
 
     ```sh
     sudo docker-compose up -d
@@ -207,13 +203,13 @@ ___
     sudo docker-compose logs -f # Follow log output
     ```
 
-3. Open your favorite browser :
+2. Open your favorite browser :
 
     * [http://localhost:8000](http://localhost:8000/)
     * [https://localhost:3000](https://localhost:3000/) ([HTTPS](#configure-nginx-with-ssl-certificates) not configured by default)
     * [http://localhost:8080](http://localhost:8080/) PHPMyAdmin (username: dev, password: dev)
 
-4. Stop and clear services
+3. Stop and clear services
 
     ```sh
     sudo docker-compose down -v
@@ -227,18 +223,13 @@ When developing, you can use [Makefile](https://en.wikipedia.org/wiki/Make_(soft
 
 | Name          | Description                                  |
 |---------------|----------------------------------------------|
-| apidoc        | Generate documentation of API                |
 | clean         | Clean directories for reset                  |
-| code-sniff    | Check the API with PHP Code Sniffer (`PSR2`) |
-| composer-up   | Update PHP dependencies with composer        |
 | docker-start  | Create and start containers                  |
 | docker-stop   | Stop and clear all services                  |
 | gen-certs     | Generate SSL certificates for `nginx`        |
 | logs          | Follow log output                            |
 | mysql-dump    | Create backup of all databases               |
 | mysql-restore | Restore backup of all databases              |
-| phpmd         | Analyse the API with PHP Mess Detector       |
-| test          | Test application with phpunit                |
 
 ### Examples
 
@@ -257,54 +248,6 @@ make help
 ___
 
 ## Use Docker commands
-
-### Installing package with composer
-
-```sh
-sudo docker run --rm -v $(pwd)/web/app:/app composer require symfony/yaml
-```
-
-### Updating PHP dependencies with composer
-
-```sh
-sudo docker run --rm -v $(pwd)/web/app:/app composer update
-```
-
-### Generating PHP API documentation
-
-```sh
-sudo docker-compose exec -T php php -d memory_limit=256M -d xdebug.profiler_enable=0 ./app/vendor/bin/apigen generate app/src --destination ./app/doc
-```
-
-### Testing PHP application with PHPUnit
-
-```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpunit --colors=always --configuration ./app
-```
-
-### Fixing standard code with [PSR2](http://www.php-fig.org/psr/psr-2/)
-
-```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpcbf -v --standard=PSR2 ./app/src
-```
-
-### Checking the standard code with [PSR2](http://www.php-fig.org/psr/psr-2/)
-
-```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpcs -v --standard=PSR2 ./app/src
-```
-
-### Analyzing source code with [PHP Mess Detector](https://phpmd.org/)
-
-```sh
-sudo docker-compose exec -T php ./app/vendor/bin/phpmd ./app/src text cleancode,codesize,controversial,design,naming,unusedcode
-```
-
-### Checking installed PHP extensions
-
-```sh
-sudo docker-compose exec php php -m
-```
 
 ### Handling database
 
