@@ -18,7 +18,7 @@ services:
             - wordpress
             - mysqldb
     wordpress:
-        image: wordpress:4.9-php5.6-fpm-alpine
+        image: wordpress:fpm-alpine
         depends_on:
           - mysqldb
         volumes:
