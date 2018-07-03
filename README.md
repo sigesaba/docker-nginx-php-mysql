@@ -1,4 +1,4 @@
-# Nginx PHP MySQL [![Build Status](https://travis-ci.org/nanoninja/docker-nginx-php-mysql.svg?branch=master)](https://travis-ci.org/nanoninja/docker-nginx-php-mysql) [![GitHub version](https://badge.fury.io/gh/nanoninja%2Fdocker-nginx-php-mysql.svg)](https://badge.fury.io/gh/nanoninja%2Fdocker-nginx-php-mysql)
+# Nginx WordPress MySQL [![Build Status](https://travis-ci.org/sigesaba/docker-wordpress-fpm.svg?branch=master)](https://travis-ci.org/sigesaba/docker-wordpress-fpm)
 
 This repository forked from [nanoninja/docker-nginx-php-mysql](https://github.com/nanoninja/docker-nginx-php-mysql).
 
