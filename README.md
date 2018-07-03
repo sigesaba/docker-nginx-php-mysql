@@ -1,6 +1,6 @@
 # Nginx WordPress MySQL [![Build Status](https://travis-ci.org/sigesaba/docker-wordpress-fpm.svg?branch=master)](https://travis-ci.org/sigesaba/docker-wordpress-fpm)
 
-This repository forked from [nanoninja/docker-nginx-php-mysql](https://github.com/nanoninja/docker-nginx-php-mysql).
+This repository is forked from [nanoninja/docker-nginx-php-mysql](https://github.com/nanoninja/docker-nginx-php-mysql).
 
 Docker running Nginx, WordPress, MySQL, PHPMyAdmin and Mailhog.
 
