@@ -81,13 +81,14 @@ You should be careful when installing third party web servers such as MySQL or N
 
 This project use the following ports :
 
-| Server     | Port |
-|------------|------|
-| MySQL      | 8989 |
-| PHPMyAdmin | 8080 |
-| Nginx      | 8000 |
-| Nginx SSL  | 3000 |
-
+| Server       | Port |
+|--------------|------|
+| MySQL        | 8989 |
+| PHPMyAdmin   | 8080 |
+| Nginx        | 8000 |
+| Nginx SSL    | 3000 |
+| MailHog SMTP | 1025 |
+| MailHog HTTP | 8025 |
 ___
 
 ## Clone the project
