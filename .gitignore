@@ -25,5 +25,5 @@ nbproject/
 etc/ssl/
 
 # WordPress
-web/public/
-!web/public/.gitkeep
+web/public/*
+!/web/public/.gitkeep
